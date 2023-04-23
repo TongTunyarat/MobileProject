@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "966006776155",
+    "firebase_url": "https://realtimefff-default-rtdb.firebaseio.com",
+    "project_id": "realtimefff",
+    "storage_bucket": "realtimefff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966006776155:android:7a001f67173db183d9ba7e",
+        "android_client_info": {
+          "package_name": "com.example.project_v1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "966006776155-v7siiuvgcr98cp7n5fef9urfo10qict3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0wC9dCtp-uaCBGb7YH4T1TnA12e3Lh-Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "966006776155-v7siiuvgcr98cp7n5fef9urfo10qict3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

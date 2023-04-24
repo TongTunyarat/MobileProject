@@ -61,6 +61,7 @@ class _MealsListState extends State<MealsList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.amber[800],
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text(
@@ -75,22 +76,22 @@ class _MealsListState extends State<MealsList> {
           icon: Icon(Icons.arrow_back),
           color: Colors.black,
         ),
-        actions: [
-          // IconButton(
-          //   onPressed: () {
-          //     Navigator.pushNamed(context, "/cart");
-          //   },
-          //   icon: Icon(Icons.shopping_cart),
-          //   color: Colors.black,
-          // ),
-          IconButton(
-            onPressed: () {
-              print("go search");
-            },
-            icon: Icon(Icons.search),
-            color: Colors.black,
-          )
-        ],
+        // actions: [
+        //   // IconButton(
+        //   //   onPressed: () {
+        //   //     Navigator.pushNamed(context, "/cart");
+        //   //   },
+        //   //   icon: Icon(Icons.shopping_cart),
+        //   //   color: Colors.black,
+        //   // ),
+        //   IconButton(
+        //     onPressed: () {
+        //       print("go search");
+        //     },
+        //     icon: Icon(Icons.search),
+        //     color: Colors.black,
+        //   )
+        // ],
       ),
       body: SafeArea(
         child: Column(children: [
@@ -169,7 +170,7 @@ class _MealsListState extends State<MealsList> {
                                             width: 100,
                                             decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.circular(10),
-                                                color: Color.fromARGB(255, 255, 119, 0)),
+                                                color: Colors.amber[800]),
                                             child: Center(
                                                 child: Text(
                                               "See More",

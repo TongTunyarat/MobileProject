@@ -76,22 +76,6 @@ class _MealsListState extends State<MealsList> {
           icon: Icon(Icons.arrow_back),
           color: Colors.black,
         ),
-        // actions: [
-        //   // IconButton(
-        //   //   onPressed: () {
-        //   //     Navigator.pushNamed(context, "/cart");
-        //   //   },
-        //   //   icon: Icon(Icons.shopping_cart),
-        //   //   color: Colors.black,
-        //   // ),
-        //   IconButton(
-        //     onPressed: () {
-        //       print("go search");
-        //     },
-        //     icon: Icon(Icons.search),
-        //     color: Colors.black,
-        //   )
-        // ],
       ),
       body: SafeArea(
         child: Column(children: [
@@ -112,82 +96,143 @@ class _MealsListState extends State<MealsList> {
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
                           final meal = snapshot.data![index];
-                          return Stack(
-                            clipBehavior: Clip.none,
-                            children: [
-                              Card(
-                                elevation: 10,
-                                color: Colors.white,
-                                child: Container(
-                                  margin: EdgeInsets.all(10),
-                                  padding: EdgeInsets.all(5),
-                                  height: 230,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.5 -
-                                          48,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Center(
-                                        child: Container(
-                                            // right: 0,
-                                            child: Image.network(
-                                          meal.thumbnailUrl ?? "",
-                                          height: 100,
-                                          width: 100,
-                                        )),
+                          return  GestureDetector(
+                            onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => FoodIngredientnPage( mealId : meal.id),),),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 10.0, bottom: 10, left: 10, right: 10),
+                              child: Column(children: [
+                                Container(
+                                  height: 150,
+                                  width: MediaQuery.of(context).size.width * 0.7,
+                                  decoration:  BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Color.fromARGB(255, 102, 102, 102),
+                                        blurRadius: 10,
+                                        offset: Offset(8, 5), // Shadow position
                                       ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        meal.name,
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(meal.tags ?? "",
-                                          maxLines: 5,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            fontSize: 10,
-                                          )),
-                                      Text("",
-                                          maxLines: 5,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            fontSize: 10,
-                                          )),
-                                      GestureDetector(
-                                        onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => FoodIngredientnPage( mealId : meal.id),),),
-                                        // child: Text(
-                                        //   "See More",
-
-                                        //   ),
-                                        child:Container(
-                                            height: 20,
-                                            width: 100,
-                                            decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(10),
-                                                color: Colors.amber[800]),
-                                            child: Center(
-                                                child: Text(
-                                              "See More",
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold),
-                                            )
-                                          ),
-                                        ),
-                                      )
                                     ],
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                          meal.thumbnailUrl ?? ""),
+                                      fit: BoxFit.fitWidth,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                                Container(
+                                  height: 70,
+                                  width: MediaQuery.of(context).size.width * 0.7,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Color.fromARGB(255, 102, 102, 102),
+                                        blurRadius: 10,
+                                        offset: Offset(8, 5), // Shadow position
+                                      ),
+                                    ],
+                                  ),
+                                  child: Flexible(
+                                    child: ListTile(
+                                      title: Text(
+                                          meal.name,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold)),
+                                      subtitle: Text(
+                                        meal.tags ?? "",
+                                        style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                            ),
                           );
+                          // Stack(
+                          //   clipBehavior: Clip.none,
+                          //   children: [
+                          //     Card(
+                          //       elevation: 10,
+                          //       color: Colors.white,
+                          //       child: Container(
+                          //         margin: EdgeInsets.all(10),
+                          //         padding: EdgeInsets.all(5),
+                          //         height: 230,
+                          //         width:
+                          //             MediaQuery.of(context).size.width * 0.5 -
+                          //                 48,
+                          //         child: Column(
+                          //           crossAxisAlignment:
+                          //               CrossAxisAlignment.start,
+                          //           children: [
+                          //             Center(
+                          //               child: Container(
+                          //                   // right: 0,
+                          //                   child: Image.network(
+                          //                 meal.thumbnailUrl ?? "",
+                          //                 height: 100,
+                          //                 width: 100,
+                          //               )),
+                          //             ),
+                          //             const SizedBox(
+                          //               height: 5,
+                          //             ),
+                          //             Text(
+                          //               meal.name,
+                          //               style: TextStyle(
+                          //                   fontSize: 18,
+                          //                   fontWeight: FontWeight.bold),
+                          //             ),
+                          //             Text(meal.tags ?? "",
+                          //                 maxLines: 5,
+                          //                 overflow: TextOverflow.ellipsis,
+                          //                 style: TextStyle(
+                          //                   fontSize: 10,
+                          //                 )),
+                          //             Text("",
+                          //                 maxLines: 5,
+                          //                 overflow: TextOverflow.ellipsis,
+                          //                 style: TextStyle(
+                          //                   fontSize: 10,
+                          //                 )),
+                          //             GestureDetector(
+                          //               onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => FoodIngredientnPage( mealId : meal.id),),),
+                          //               child:Container(
+                          //                   height: 20,
+                          //                   width: 100,
+                          //                   decoration: BoxDecoration(
+                          //                       borderRadius: BorderRadius.circular(10),
+                          //                       color: Colors.amber[800]),
+                          //                   child: Center(
+                          //                       child: Text(
+                          //                     "See More",
+                          //                     style: TextStyle(
+                          //                         fontSize: 15,
+                          //                         color: Colors.white,
+                          //                         fontWeight: FontWeight.bold),
+                          //                   )
+                          //                 ),
+                          //               ),
+                          //             )
+                          //           ],
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // );
                         }));
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
@@ -199,14 +244,4 @@ class _MealsListState extends State<MealsList> {
       ),
     );
   }
-
-  // void _onMealTap(Meal meal) {
-  //   Navigator.push(
-  //     context,
-  //     MaterialPageRoute(
-  //       builder: (context) => My_search(meal: meal),
-  //     ),
-  //   );
-  // }
-
 }

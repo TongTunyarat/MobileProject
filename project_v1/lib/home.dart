@@ -30,10 +30,10 @@ class _HomePage1 extends State<HomePage> with TickerProviderStateMixin {
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 25,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.amber[800],
 
         leading: Icon(Icons.restaurant,
-            color: Color.fromARGB(255, 15, 23, 29), size: 30),
+            color: Colors.white, size: 30),
 
         actions: [
 
@@ -41,8 +41,8 @@ class _HomePage1 extends State<HomePage> with TickerProviderStateMixin {
             onPressed: () {
               signOut(context);
             },
-            icon: Icon(Icons.https, size: 30),
-            color: Colors.black,
+            icon: Icon(Icons.output, size: 30),
+            color: Colors.white,
           )
         ],
       ),
@@ -315,8 +315,8 @@ class _HomePage1 extends State<HomePage> with TickerProviderStateMixin {
                 ),
               ),
               Padding(
-                  padding: const EdgeInsets.only(top: 330, left: 5),
-                  child: Text("Meals",
+                  padding: const EdgeInsets.only(top: 310, left: 5),
+                  child: Text("Menu",
                       style: TextStyle(
                           fontSize: 30,
                           color: Colors.black,
@@ -353,7 +353,7 @@ class _HomePage1 extends State<HomePage> with TickerProviderStateMixin {
                         ),
                         child: Padding(
                             padding: const EdgeInsets.only(top: 50, left: 20),
-                            child: const Text("Food",
+                            child: const Text("Meals",
                                 style: TextStyle(
                                     fontSize: 25,
                                     color: Colors.black,

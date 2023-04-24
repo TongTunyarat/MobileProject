@@ -4,12 +4,11 @@ import 'package:project_v1/FoodDetail/food_Instructions.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
-
 class FoodModels {
   final String id;
   final String name;
   final String? drinkAlternate;
-  final String? category;
+  final String category;
   final String? area;
   final String instructions;
   final String thumb;
@@ -26,7 +25,7 @@ class FoodModels {
     required this.id,
     required this.name,
     this.drinkAlternate,
-    this.category,
+    required this.category,
     this.area,
     required this.instructions,
     required this.thumb,
@@ -89,8 +88,8 @@ class _FoodIngredientnPage extends State<FoodIngredientnPage> {
   }
 
   Future<List<FoodModels>> fetchFoodModels(String mealId) async {
-    final response = await http.get(
-        Uri.parse('https://www.themealdb.com/api/json/v1/1/lookup.php?i=$mealId'));
+    final response = await http.get(Uri.parse(
+        'https://www.themealdb.com/api/json/v1/1/lookup.php?i=$mealId'));
     if (response.statusCode == 200) {
       final parsed =
           json.decode(response.body)['meals'].cast<Map<String, dynamic>>();
@@ -110,12 +109,12 @@ class _FoodIngredientnPage extends State<FoodIngredientnPage> {
         elevation: 0.0,
         title: null,
         leading: const CircleAvatar(
-            backgroundColor: Color.fromARGB(255, 255, 255, 255),
-            radius: 20,
-            child: BackButton(
-              color: Colors.black,
-            ),
+          backgroundColor: Colors.transparent,
+          radius: 20,
+          child: BackButton(
+            color: Colors.black,
           ),
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -132,23 +131,28 @@ class _FoodIngredientnPage extends State<FoodIngredientnPage> {
           future: _futureFoodModels,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              final foodModel = snapshot.data![0]; // get the first item in the list
+              final foodModel =
+                  snapshot.data![0]; // get the first item in the list
               final ingredientsList = foodModel.ingredients;
               final measuressList = foodModel.measures;
               final ingredientItems = <Widget>[];
-              for (var i = 0; i < ingredientsList.length && i < measuressList.length; i++) {
+              for (var i = 0;
+                  i < ingredientsList.length && i < measuressList.length;
+                  i++) {
                 final ingredient = ingredientsList[i];
                 final measures = measuressList[i];
                 final ingredientWidget = ListTile(
-                  title: Text('${ingredient}: ${measures}', style: TextStyle(fontSize: 15, height: 0.1, color: Colors.black87)),
+                  title: Text('${ingredient}: ${measures}',
+                      style: TextStyle(
+                          fontSize: 15, height: 0.1, color: Colors.black87)),
                 );
                 ingredientItems.add(ingredientWidget);
               }
               return ListView(
                 children: [
-                  Column(
+                  Stack(
                     children: [
-                      Stack(
+                      Column(
                         children: [
                           Image.network(
                             foodModel.thumb,
@@ -156,77 +160,113 @@ class _FoodIngredientnPage extends State<FoodIngredientnPage> {
                             // height: MediaQuery.of(context).size.height * 0.5,
                           ),
                           Positioned(
-                            top:
-                                (MediaQuery.of(context).size.height * 0.5) - 20,
+                            // top:
+                            //     (MediaQuery.of(context).size.height * 0.5) - 20,
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               height: 20,
                               decoration: const BoxDecoration(
-                                // color: Colors.white,
-                              ),
+                                  // color: Colors.white,
+                                  ),
                             ),
                           ),
                         ],
                       ),
-                      Container(
-                        constraints: BoxConstraints(
-                          maxHeight: double.infinity,
-                          minHeight: MediaQuery.of(context).size.height * 0.4,
-                        ),
-                        width: MediaQuery.of(context).size.width,
-                        color: Colors.white,
+                      SingleChildScrollView(
                         child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 10),
-                                child: Text(
-                                  foodModel.name,
-                                  style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
+                          padding: const EdgeInsets.only(top: 340),
+                          child: Container(
+                            constraints: BoxConstraints(
+                              maxHeight: double.infinity,
+                              minHeight: MediaQuery.of(context).size.height * 0.4,
+                            ),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(50),
+                              topRight: Radius.circular(50)
+                            ),color: Colors.white,),
+                            width: MediaQuery.of(context).size.width,
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 10),
+                                          child: Text(
+                                            foodModel.name,
+                                            style: TextStyle(
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 20),
+                                          child: Container(
+                                            height: 30,
+                                            width: 40,
+                                            decoration: BoxDecoration(
+                                              color: Colors.amber[800],
+                                              borderRadius: BorderRadius.circular(15)
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                foodModel.category,
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ),
-                              Text(
-                                'Ingredients: ',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: ingredientItems,
-                              ),
-                              GestureDetector(
-                                onTap: () => Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => FoodInstructionPage(mealId: foodModel.id),
-                                  ),
-                                ),
-                                child: Container(
-                                  margin:
-                                      const EdgeInsets.only(top: 20, bottom: 10),
-                                  height: 40,
-                                  decoration: const BoxDecoration(
-                                    color: Colors.deepOrange,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(30)),
-                                  ),
-                                  child: const Center(
-                                      child: Text(
-                                    "Instructions",
+                                  Text(
+                                    'Ingredients: ',
                                     style: TextStyle(
-                                        fontSize: 16, color: Colors.white),
-                                    textAlign: TextAlign.center,
-                                  )),
-                                ),
-                              )
-                            ],
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: ingredientItems,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () => Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => FoodInstructionPage(
+                                            mealId: foodModel.id),
+                                      ),
+                                    ),
+                                    child: Container(
+                                      margin: const EdgeInsets.only(
+                                          top: 20, bottom: 10),
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        color: Colors.amber[800],
+                                        borderRadius:
+                                            BorderRadius.all(Radius.circular(30)),
+                                      ),
+                                      child: const Center(
+                                          child: Text(
+                                        "Instructions",
+                                        style: TextStyle(
+                                            fontSize: 16, color: Colors.white),
+                                        textAlign: TextAlign.center,
+                                      )),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -245,4 +285,3 @@ class _FoodIngredientnPage extends State<FoodIngredientnPage> {
     );
   }
 }
-

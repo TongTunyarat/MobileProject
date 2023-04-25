@@ -55,29 +55,11 @@ class MyApp extends StatelessWidget {
           '/searchfood': (BuildContext context) => const SpinPage(),
           '/spin': (BuildContext context) => const SpinPage(),
           '/opencard': (BuildContext context) => const OpenTheCard(),
-          '/signin': (BuildContext context) =>  singup_Page(),
-          '/signup': (BuildContext context) => SinginPage(),
+          '/signin': (BuildContext context) =>  SinginPage(),
+          '/signup': (BuildContext context) =>  singup_Page(),
         },
+        initialRoute: "/", //ให้เปิดappขึ้นมาหน้าแรก
       ),
     );
   }
-    // MaterialApp(
-    //   title: 'my project',
-    //   debugShowCheckedModeBanner: false,
-    //   theme: ThemeData(
-        
-    //     primarySwatch: Colors.blue,
-    //   ),
-    //    routes: <String, WidgetBuilder> { //WidgetBuilder เป็นฟังชั่นหนึ่งที่รับค่า context มา เพราะยังไม่ได้กำหนกว่าเป็น sataless, satatefull 
-    //   "/" : (BuildContext context) => Home_Page(),
-    //   "/singin" : (BuildContext context) => SinginPage(),
-    //   "/singup" : (BuildContext context) => singup_Page (),
-    //   "/search" : (BuildContext context) => MealsList (),
-    //   //"/mycard" : (BuildContext context) => Mycard(),
-    //   //"/homepage" : (BuildContext context) => HomeeePage();,
-    //    },
-
-    //    initialRoute: "/singin", //ให้เปิดappขึ้นมาหน้าแรก
-    // );
-  //}
 }

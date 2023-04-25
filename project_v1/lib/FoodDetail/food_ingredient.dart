@@ -144,7 +144,7 @@ class _FoodIngredientnPage extends State<FoodIngredientnPage> {
                 final ingredientWidget = ListTile(
                   title: Text('${ingredient}: ${measures}',
                       style: TextStyle(
-                          fontSize: 15, height: 0.1, color: Colors.black87)),
+                          fontSize: 17, height: 0.1, color: Colors.black87)),
                 );
                 ingredientItems.add(ingredientWidget);
               }
@@ -178,12 +178,15 @@ class _FoodIngredientnPage extends State<FoodIngredientnPage> {
                           child: Container(
                             constraints: BoxConstraints(
                               maxHeight: double.infinity,
-                              minHeight: MediaQuery.of(context).size.height * 0.4,
+                              minHeight:
+                                  MediaQuery.of(context).size.height * 0.4,
                             ),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(50),
-                              topRight: Radius.circular(50)
-                            ),color: Colors.white,),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(50),
+                                  topRight: Radius.circular(50)),
+                              color: Colors.white,
+                            ),
                             width: MediaQuery.of(context).size.width,
                             child: Padding(
                               padding: const EdgeInsets.all(15.0),
@@ -195,31 +198,34 @@ class _FoodIngredientnPage extends State<FoodIngredientnPage> {
                                     child: Row(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 10),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 10),
                                           child: Text(
                                             foodModel.name,
                                             style: TextStyle(
-                                              fontSize: 30,
+                                              fontSize: 35,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 20),
+                                          padding:
+                                              const EdgeInsets.only(left: 20),
                                           child: Container(
                                             height: 30,
-                                            width: 40,
+                                            width: 50,
                                             decoration: BoxDecoration(
-                                              color: Colors.amber[800],
-                                              borderRadius: BorderRadius.circular(15)
-                                            ),
+                                                color: Colors.amber[800],
+                                                borderRadius:
+                                                    BorderRadius.circular(15)),
                                             child: Center(
                                               child: Text(
                                                 foodModel.category,
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.bold),
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                             ),
                                           ),
@@ -230,20 +236,22 @@ class _FoodIngredientnPage extends State<FoodIngredientnPage> {
                                   Text(
                                     'Ingredients: ',
                                     style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 25,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   SizedBox(height: 5),
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: ingredientItems,
                                   ),
                                   GestureDetector(
                                     onTap: () => Navigator.of(context).push(
                                       MaterialPageRoute(
-                                        builder: (context) => FoodInstructionPage(
-                                            mealId: foodModel.id),
+                                        builder: (context) =>
+                                            FoodInstructionPage(
+                                                mealId: foodModel.id),
                                       ),
                                     ),
                                     child: Container(
@@ -252,14 +260,14 @@ class _FoodIngredientnPage extends State<FoodIngredientnPage> {
                                       height: 40,
                                       decoration: BoxDecoration(
                                         color: Colors.amber[800],
-                                        borderRadius:
-                                            BorderRadius.all(Radius.circular(30)),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(30)),
                                       ),
                                       child: const Center(
                                           child: Text(
                                         "Instructions",
                                         style: TextStyle(
-                                            fontSize: 16, color: Colors.white),
+                                            fontSize: 20, color: Colors.white),
                                         textAlign: TextAlign.center,
                                       )),
                                     ),

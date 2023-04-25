@@ -1,9 +1,9 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
-import 'package:project_v1/notuse/home_menu.dart';
+import 'package:project_v1/home_menu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project_v1/Login/singup_page.dart';
+
+// import 'package:getwidget/getwidget.dart';
 
 TextEditingController _input = new TextEditingController();
 
@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePage1 extends State<HomePage> with TickerProviderStateMixin {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+    final FirebaseAuth _auth = FirebaseAuth.instance;
 
   late TabController _tabController;
 
@@ -31,20 +31,44 @@ class _HomePage1 extends State<HomePage> with TickerProviderStateMixin {
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 25,
-        backgroundColor: Colors.amber[800],
-        leading: Icon(Icons.restaurant, color: Colors.white, size: 30),
+        backgroundColor: Colors.white,
+       
+         leading:
+         Icon(Icons.restaurant, color: Color.fromARGB(255, 15, 23, 29), size: 30),
+        //),
+         // IconButton(
+        //   onPressed: () {
+        //     Navigator.pushNamed(context, "/home");
+        //   },
+        //   icon: Icon(Icons.arrow_back),
+        //   color: Colors.black,
+        // ),
         actions: [
+          // IconButton(
+          //   onPressed: () {
+          //     Navigator.pushNamed(context, "/cart");
+          //   },
+          //   icon: Icon(Icons.shopping_cart),
+          //   color: Colors.black,
+          // ),
           IconButton(
             onPressed: () {
               signOut(context);
+              
+            //if (_auth.currentUser != null) print(_auth.currentUser?.email ?? 'No email found'); else Text('Not logged in');
             },
-            icon: Icon(Icons.output, size: 30),
-            color: Colors.white,
+            icon: Icon(Icons.https, size: 30),
+            color: Colors.black,
           )
         ],
       ),
+
+
+      
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
-      body: SingleChildScrollView(
+
+
+     body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
             children: [
@@ -578,14 +602,27 @@ class _HomePage1 extends State<HomePage> with TickerProviderStateMixin {
           ),
         ),
       ),
+
+
+
     );
   }
 
   void signOut(BuildContext context) {
     _auth.signOut();
-    print('user logged out');
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => singup_Page()));
+    //final String email = userCredential.user.email;
+    final currentUser = _auth.currentUser;
+    final email = currentUser?.email;
+    print( ' user $email logged out');
+     Navigator.pushReplacement( context,
+          MaterialPageRoute(
+                        builder: (context) => singup_Page( )));
     //Navigator.pushNamed(context, '/singup');
   }
+
+
+
 }
+
+
+

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_v1/FoodDetail/food_ingredient.dart';
 import 'package:project_v1/home_menu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project_v1/Login/singup_page.dart';
@@ -141,7 +142,9 @@ class _HomePage1 extends State<HomePage> with TickerProviderStateMixin {
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: [
-                            Padding(
+                            GestureDetector(
+                                onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => FoodIngredientnPage( mealId : "52845"),),),
+                            child: Padding(
                               padding: const EdgeInsets.only(
                                   top: 10.0, bottom: 10, left: 10, right: 10),
                               child: Column(children: [
@@ -207,8 +210,10 @@ class _HomePage1 extends State<HomePage> with TickerProviderStateMixin {
                                   ),
                                 ),
                               ]),
-                            ),
-                            Padding(
+                            ),),
+                            GestureDetector(
+                                onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => FoodIngredientnPage( mealId : "52927"),),),
+                            child:Padding(
                               padding: const EdgeInsets.only(
                                   top: 10.0, bottom: 10, left: 10, right: 10),
                               child: Column(children: [
@@ -274,8 +279,10 @@ class _HomePage1 extends State<HomePage> with TickerProviderStateMixin {
                                   ),
                                 ),
                               ]),
-                            ),
-                            Padding(
+                            ),),
+                            GestureDetector(
+                                onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => FoodIngredientnPage( mealId : "52979"),),),
+                            child:Padding(
                               padding: const EdgeInsets.only(
                                   top: 10.0, bottom: 10, left: 10, right: 10),
                               child: Column(children: [
@@ -340,8 +347,10 @@ class _HomePage1 extends State<HomePage> with TickerProviderStateMixin {
                                   ),
                                 ),
                               ]),
-                            ),
-                            Padding(
+                            ),),
+                            GestureDetector(
+                                onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => FoodIngredientnPage( mealId : "52992"),),),
+                            child:Padding(
                               padding: const EdgeInsets.only(
                                   top: 10.0, bottom: 10, left: 10, right: 10),
                               child: Column(children: [
@@ -406,7 +415,7 @@ class _HomePage1 extends State<HomePage> with TickerProviderStateMixin {
                                   ),
                                 ),
                               ]),
-                            ),
+                            ),),
                           ],
                         ),
                       ),

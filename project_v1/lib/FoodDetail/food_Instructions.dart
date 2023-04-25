@@ -1,11 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-// import 'package:flutter_application_1/api.dart';
-// import 'package:get/get.dart';
+
 import 'package:http/http.dart' as http;
 
-// import 'package:flutter_application_1/food_model.dart';
 
 class MealDetails {
   final String id;
@@ -72,7 +70,7 @@ class _FoodInstructionPage extends State<FoodInstructionPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        elevation: 1,
+        elevation: 0,
         title: null,
         leading: const CircleAvatar(
           backgroundColor: Colors.transparent,
@@ -95,10 +93,12 @@ class _FoodInstructionPage extends State<FoodInstructionPage> {
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/3.png"),
-              fit: BoxFit.cover
-            )
-        ),
+                image: AssetImage("assets/images/3.png"),
+                colorFilter: ColorFilter.mode(
+                  Colors.white.withOpacity(0.75),
+                  BlendMode.modulate,
+                ),
+                fit: BoxFit.cover)),
         child: Center(
           child: FutureBuilder<List<MealDetails>>(
             future: _futureMeals,
@@ -115,9 +115,10 @@ class _FoodInstructionPage extends State<FoodInstructionPage> {
                         child: Container(
                           constraints: BoxConstraints(
                               maxHeight: double.infinity,
-                              minHeight: MediaQuery.of(context).size.height * 0.4),
+                              minHeight:
+                                  MediaQuery.of(context).size.height * 0.4),
                           width: MediaQuery.of(context).size.width,
-                          color: Color.fromARGB(212, 255, 255, 255),
+                          color: Colors.white,
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Column(
@@ -138,7 +139,8 @@ class _FoodInstructionPage extends State<FoodInstructionPage> {
                                     child: Text(
                                       foods.instructions,
                                       style: TextStyle(
-                                          fontSize: 14, color: Colors.black54,
+                                          fontSize: 14,
+                                          color: Colors.black54,
                                           fontWeight: FontWeight.bold),
                                     )),
                               ],
